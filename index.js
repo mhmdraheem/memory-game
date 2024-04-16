@@ -1,4 +1,4 @@
-import { shuffle } from "./utils.js";
+import { shuffle, list, onClickOutside } from "./utils.js";
 
 // setup header section
 let overlay = document.querySelector(".overlay");
@@ -6,9 +6,8 @@ let startGameBtn = overlay.querySelector("button");
 
 startGameBtn.onclick = () => {
   // set player name
-  let playerName = prompt("Your name:");
-  let playerNameSpan = document.querySelector(".header .player-name");
-  playerNameSpan.innerHTML = playerName || "--";
+  let playerNameSpan = document.querySelector(".player-name");
+  playerNameSpan.innerHTML = prompt("Your name:");
 
   overlay.style.display = "none";
 
@@ -16,7 +15,7 @@ startGameBtn.onclick = () => {
 };
 
 function startStopWatch() {
-  let stopWatch = document.querySelector(".header .stopWatch");
+  let stopWatch = document.querySelector(".stopWatch");
 
   let second = stopWatch.querySelector(".second");
   let minute = stopWatch.querySelector(".minute");
@@ -41,7 +40,7 @@ function convertTo2Digits(num) {
   return num < 10 ? "0" + num : num;
 }
 
-const flipSpeedMillis = 2000;
+let flipSpeedMillis = 2000;
 const frontfaceImage = "question.png";
 const backfaceImageNames = [
   "angular.png",
@@ -70,10 +69,7 @@ function createCard(index) {
   card.classList.add("flippig-card");
   card.addEventListener("click", clickHandler);
   card.setAttribute("name", getCardName(index));
-  card.append(
-    createFrontFace(frontfaceImage),
-    createBackFace(backfaceImages[index])
-  );
+  card.append(createFrontFace(frontfaceImage), createBackFace(backfaceImages[index]));
   return card;
 }
 
@@ -191,3 +187,18 @@ function createBackFace(backFaceImage) {
   face.append(img);
   return face;
 }
+
+// Dashboard
+list("flip-speed-list", (selectedValue) => {
+  switch (selectedValue) {
+    case "Slow":
+      flipSpeedMillis = 3000;
+      break;
+    case "Meduim":
+      flipSpeedMillis = 2000;
+      break;
+    case "Fast":
+      flipSpeedMillis = 500;
+      break;
+  }
+});
