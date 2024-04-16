@@ -14,6 +14,7 @@ startGameBtn.onclick = () => {
   overlay.style.display = "none";
 };
 
+const flipSpeedMillis = 2000;
 const frontfaceImage = "question.png";
 const backfaceImageNames = [
   "angular.png",
@@ -27,7 +28,7 @@ const backfaceImageNames = [
   "python.png",
   "react.png",
 ];
-const backfaceImages = [...backfaceImageNames, ...backfaceImageNames];
+const backfaceImages = shuffle([...backfaceImageNames, ...backfaceImageNames]);
 const numCards = backfaceImages.length;
 
 // create cards
@@ -60,7 +61,7 @@ function clickHandler() {
       matchCards();
     } else {
       updateWrongCount();
-      unflipCardAfterMillis(this, 5000);
+      unflipCardAfterMillis(this);
     }
   }
 }
@@ -93,13 +94,13 @@ function flipCard(card) {
   card.classList.add("flip");
 }
 
-function unflipCardAfterMillis(card, millis) {
+function unflipCardAfterMillis(card) {
   setTimeout(() => {
     if (cardNotMatched(card)) {
       cardsQueue.remove(card);
       card.classList.remove("flip");
     }
-  }, millis);
+  }, flipSpeedMillis);
 }
 
 function playSound(audioId) {
