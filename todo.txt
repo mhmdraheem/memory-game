@@ -4,3 +4,4 @@ congrats cermonye
 timer
 save user's last time
 images and audio to public
+configurable size

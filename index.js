@@ -89,7 +89,7 @@ let cardsQueue = {
 
 function flipCard(card) {
   cardsQueue.add(card);
-  playSound("flip");
+  playSound("fliped");
   card.classList.add("flip");
 }
 
@@ -102,8 +102,8 @@ function unflipCardAfterMillis(card, millis) {
   }, millis);
 }
 
-function playSound(className) {
-  let audio = document.querySelector(".cards audio." + className);
+function playSound(audioId) {
+  let audio = document.getElementById(audioId);
   audio.currentTime = 0;
   audio.play();
 }
@@ -127,9 +127,9 @@ function matchCards() {
   metaData.matchedPairs++;
 
   if (areAllPairsMatched()) {
-    playSound("winning");
+    playSound("completed");
   } else {
-    playSound("match");
+    playSound("matched");
   }
 }
 
