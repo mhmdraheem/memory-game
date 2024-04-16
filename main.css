@@ -15,15 +15,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  display: none;
 }
 
 .overlay button {
   color: white;
   font-size: 50px;
   cursor: pointer;
-  background-color: red;
+  background-color: orangered;
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
