@@ -5,14 +5,41 @@ let overlay = document.querySelector(".overlay");
 let startGameBtn = overlay.querySelector("button");
 
 startGameBtn.onclick = () => {
-  let playerName = prompt("Your name:");
-
   // set player name
+  let playerName = prompt("Your name:");
   let playerNameSpan = document.querySelector(".header .player-name");
   playerNameSpan.innerHTML = playerName || "--";
 
   overlay.style.display = "none";
+
+  startClock();
 };
+
+function startClock() {
+  let clock = document.querySelector(".header .clock");
+
+  let second = clock.querySelector(".second");
+  let minute = clock.querySelector(".minute");
+  let hour = clock.querySelector(".hour");
+
+  let totalSec = 0;
+  setInterval(() => {
+    totalSec++;
+
+    let secValue = totalSec % 60;
+    second.innerHTML = convertTo2Digits(secValue);
+
+    let minValue = Math.floor(totalSec / 60) % 60;
+    minute.innerHTML = convertTo2Digits(minValue);
+
+    let hourValue = Math.floor(totalSec / 3600);
+    hour.innerHTML = convertTo2Digits(hourValue);
+  }, 100);
+}
+
+function convertTo2Digits(num) {
+  return num < 10 ? "0" + num : num;
+}
 
 const flipSpeedMillis = 2000;
 const frontfaceImage = "question.png";
