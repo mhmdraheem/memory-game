@@ -53,35 +53,62 @@ ul li {
   font-size: 22px;
   padding: 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  background-color: #eee;
-  border: 2px solid #2993e3;
+  background-color: white;
+  box-shadow: 0px 1px 10px 5px #0000001a;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+}
+
+.time,
+.wrong-moves {
+  border: 2px solid #d4d4d4;
+  border-radius: 4px;
+}
+
+.time .title,
+.wrong-moves .title {
+  padding: 10px;
+  display: inline-block;
 }
 
 .stopWatch {
   font-family: "Orbitron", sans-serif;
-  color: #2993e3;
+  font-size: 20px;
+  padding: 10px;
+  border-left: 2px solid #d4d4d4;
+}
+
+.stopWatch > span {
+  width: 30px;
+}
+
+.wrong-moves .value {
+  padding: 10px;
+  border-left: 2px solid #d4d4d4;
+  color: red;
+}
+
+.save-game {
+  width: fit-content;
+  border: none;
   font-weight: bold;
-  font-size: 50px;
-  display: flex;
+  font-size: 20px;
+  padding: 15px 20px;
+  color: #2993e3;
+  background-color: white;
+  border-radius: 6px;
+  border: 2px solid #2993e3;
+  transition: 0.3s;
 }
 
-.stopWatch span {
-  width: 80px;
-  display: block;
-}
-
-.stopWatch span.second {
-  margin-left: 5px;
-}
-
-.stopWatch span.minute {
-  margin: 0 5px;
-}
-
-.stopWatch span.hour {
-  margin-right: 5px;
+.save-game:hover {
+  color: white;
+  background-color: #2993e3;
 }
 
 .cards {
@@ -125,17 +152,49 @@ ul li {
 }
 
 .dashboard {
-  background-color: #eee;
-  border-radius: 5px;
+  width: 350px;
+  align-self: flex-start;
   margin-top: 20px;
   margin-left: 50px;
+  border: 1px solid #d4d4d4;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #d4d4d4;
+  gap: 20px;
   padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.profile h2 {
+  font-size: 25px;
+  font-weight: normal;
+}
+
+.profile h2 .player-name {
+  font-weight: bold;
+  width: 100px;
+}
+
+.profile .avatar {
+  width: 50px;
+  height: 50px;
+}
+
+.settings {
+  /* flex: 1; */
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 20px;
 }
 
 .list {
-  font-size: 20px;
-  margin-top: 50px;
-  width: 300px;
   position: relative;
 }
 
@@ -147,7 +206,7 @@ ul li {
 .selector {
   width: 100%;
   height: 40px;
-  background-color: #e2e2e2;
+  background-color: #f4f4f4;
   border: 1px solid #777;
   border-radius: 4px;
   position: relative;
@@ -199,4 +258,95 @@ ul li {
 
 .list li:hover {
   background-color: #e2e2e2;
+}
+
+.settings .colors {
+  margin-top: 30px;
+}
+
+.settings .colors > span {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.settings .colors ul {
+  display: flex;
+}
+
+.settings .colors ul li {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.settings .colors ul li.selected {
+  border: 3px solid #2993e3;
+  z-index: 2;
+}
+
+.settings .colors ul li.c1 {
+  background-color: #333333;
+}
+
+.settings .colors ul li.c2 {
+  background-color: goldenrod;
+  margin-left: -15px;
+}
+
+.settings .colors ul li.c3 {
+  background-color: yellowgreen;
+  margin-left: -15px;
+}
+
+.settings .colors ul li.c4 {
+  background-color: orangered;
+  margin-left: -15px;
+}
+
+.settings .sound {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settings .sound-control {
+  margin-left: 50px;
+  height: fit-content;
+}
+
+.settings .sound-control label {
+  display: block;
+  width: 80px;
+  height: 40px;
+  background-color: #c1c0c0;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.settings .sound-control label::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  transition: 0.3s;
+}
+
+.settings .sound-control input {
+  appearance: none;
+  display: none;
+}
+
+.settings .sound-control input:checked + label {
+  background-color: #2993e3;
+}
+
+.settings .sound-control input:checked + label::before {
+  left: calc(100% - 35px);
 }

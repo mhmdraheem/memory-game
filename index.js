@@ -164,7 +164,7 @@ function areAllPairsMatched() {
 function updateWrongCount() {
   let cards = cardsQueue.activeCards;
   if (cards[0] != cards[1] && ++metaData.wrongCount % 2 == 0) {
-    document.querySelector(".header .wrong-count").innerHTML++;
+    document.querySelector(".header .wrong-moves .value").innerHTML++;
     metaData.wrongCount = 0;
   }
 }
@@ -191,13 +191,13 @@ function createBackFace(backFaceImage) {
 // Dashboard
 list("flip-speed-list", (selectedValue) => {
   switch (selectedValue) {
-    case "Slow":
+    case "Easy":
       flipSpeedMillis = 3000;
       break;
     case "Meduim":
       flipSpeedMillis = 2000;
       break;
-    case "Fast":
+    case "Hard":
       flipSpeedMillis = 500;
       break;
   }
