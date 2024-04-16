@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="./main.css" />
+    <link rel="shortcut icon" href="#" />
+  </head>
+  <body>
+    <div class="overlay">
+      <button>Start Game</button>
+    </div>
+    <div class="container">
+      <div class="header">
+        <span>Hello : <span class="player-name"></span></span>
+        <span>Wrong tries : <span class="wrong-count">0</span></span>
+      </div>
+      <div class="cards">
+        <audio class="flip">
+          <source src="sound/flip-up.mp3" type="audio/mp3" />
+        </audio>
+        <audio
+          class="match"
+          src="sound/card-match.mp3"
+          type="audio/mp3"
+        ></audio>
+        <audio
+          class="winning"
+          src="sound/winning-game.mp3"
+          type="audio/mp3"
+        ></audio>
+      </div>
+    </div>
+  </body>
+  <script src="index.js" type="module"></script>
+  <script src="utils.js" type="module"></script>
+</html>

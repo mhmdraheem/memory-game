@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(111, 136, 153, 0.8);
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  display: none;
+}
+
+.overlay button {
+  color: white;
+  font-size: 50px;
+  cursor: pointer;
+  background-color: red;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+.container {
+  width: fit-content;
+  margin: 20px auto;
+}
+
+.header {
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 22px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #eee;
+  border: 2px solid #2993e3;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(5, 180px);
+  gap: 15px;
+}
+
+.flippig-card {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  transform-style: preserve-3d;
+  transition: 0.5s;
+}
+
+.card-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 5px solid #2993e3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.front {
+  background-color: #333333;
+}
+
+.back {
+  background-color: #5e7b8b;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+.flip {
+  transform: rotateY(180deg);
+}
