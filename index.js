@@ -12,15 +12,15 @@ startGameBtn.onclick = () => {
 
   overlay.style.display = "none";
 
-  startClock();
+  startStopWatch();
 };
 
-function startClock() {
-  let clock = document.querySelector(".header .clock");
+function startStopWatch() {
+  let stopWatch = document.querySelector(".header .stopWatch");
 
-  let second = clock.querySelector(".second");
-  let minute = clock.querySelector(".minute");
-  let hour = clock.querySelector(".hour");
+  let second = stopWatch.querySelector(".second");
+  let minute = stopWatch.querySelector(".minute");
+  let hour = stopWatch.querySelector(".hour");
 
   let totalSec = 0;
   setInterval(() => {
@@ -34,7 +34,7 @@ function startClock() {
 
     let hourValue = Math.floor(totalSec / 3600);
     hour.innerHTML = convertTo2Digits(hourValue);
-  }, 100);
+  }, 1000);
 }
 
 function convertTo2Digits(num) {
