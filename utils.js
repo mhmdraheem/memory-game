@@ -25,7 +25,7 @@ export function list(listId, onListItemClick) {
   let ul = list.querySelector("ul");
 
   selector.onclick = () => {
-    ul.classList.add("show-list");
+    ul.classList.replace("hide-list", "show-list");
   };
 
   onClickOutside(list, () => {

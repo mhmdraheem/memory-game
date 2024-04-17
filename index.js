@@ -4,15 +4,15 @@ import { shuffle, list, onClickOutside } from "./utils.js";
 let overlay = document.querySelector(".overlay");
 let startGameBtn = overlay.querySelector("button");
 
-startGameBtn.onclick = () => {
-  // set player name
-  let playerNameSpan = document.querySelector(".player-name");
-  playerNameSpan.innerHTML = prompt("Your name:");
+//startGameBtn.onclick = () => {
+// set player name
+let playerNameSpan = document.querySelector(".player-name");
+//playerNameSpan.innerHTML = prompt("Your name:");
 
-  overlay.style.display = "none";
+overlay.style.display = "none";
 
-  startStopWatch();
-};
+startStopWatch();
+//};
 
 function startStopWatch() {
   let stopWatch = document.querySelector(".stopWatch");
@@ -56,12 +56,15 @@ const backfaceImageNames = [
 ];
 const backfaceImages = shuffle([...backfaceImageNames, ...backfaceImageNames]);
 const numCards = backfaceImages.length;
+createCards(numCards);
 
 // create cards
-let cards = document.querySelector(".cards");
-for (let i = 0; i < numCards; i++) {
-  let card = createCard(i);
-  cards.append(card);
+function createCards(numCards) {
+  let cards = document.querySelector(".cards");
+  for (let i = 0; i < 64; i++) {
+    let card = createCard(0);
+    cards.append(card);
+  }
 }
 
 function createCard(index) {
