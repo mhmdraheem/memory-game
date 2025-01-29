@@ -15,9 +15,9 @@ const backfaceImageNames = [
 
 // Difficulty settings
 const difficultySettings = {
-  easy: { minCardSize: 150, gap: 10 },
-  medium: { minCardSize: 100, gap: 10 },
-  hard: { minCardSize: 80, gap: 10 },
+  easy: { minCardSize: 100, gap: 10 },
+  medium: { minCardSize: 80, gap: 10 },
+  hard: { minCardSize: 60, gap: 10 },
 };
 
 let currentDifficulty = "easy";
@@ -26,7 +26,7 @@ function calculateCardDimensions(difficulty) {
   const { minCardSize, gap } = difficultySettings[difficulty];
   const cardsContainer = document.querySelector(".cards");
   const viewportWidth = cardsContainer.clientWidth;
-  const viewportHeight = cardsContainer.clientHeight - 50;
+  const viewportHeight = cardsContainer.clientHeight - 100;
 
   // Calculate the number of columns and rows
   let columns = Math.floor(viewportWidth / (minCardSize + gap));
@@ -52,8 +52,7 @@ function calculateCardDimensions(difficulty) {
 
 // Function to adjust the grid layout and card sizes
 function adjustGridLayout(difficulty) {
-  const { columns, rows, cardWidth, cardHeight, evenTotalCards } =
-    calculateCardDimensions(difficulty);
+  const { columns, rows, cardWidth, cardHeight, evenTotalCards } = calculateCardDimensions(difficulty);
   const cardsContainer = document.querySelector(".cards");
 
   // Clear existing cards
@@ -115,20 +114,17 @@ function createCard(imageName) {
   card.classList.add("flippig-card");
   card.addEventListener("click", clickHandler);
   card.setAttribute("name", imageName.split(".")[0]);
-  card.append(
-    createFrontFace(frontfaceImage),
-    createBackFace(imageName)
-  );
+  card.append(createFrontFace(frontfaceImage), createBackFace(imageName));
   return card;
 }
 
 function clickHandler() {
-  if (cardNotMatched(this) ) { 
+  if (cardNotMatched(this)) {
     flipCard(this);
-    
+
     let matchedPair = getMatchedPair(this);
-    if (matchedPair.length === 1) {      
-      matchedPair.push(this)
+    if (matchedPair.length === 1) {
+      matchedPair.push(this);
       matchCards(matchedPair);
     }
   }
@@ -159,11 +155,11 @@ function flipCard(card) {
 
   setTimeout(() => {
     let idx = cardsQueue.activeCards.indexOf(card);
-    if(idx > -1) {
+    if (idx > -1) {
       cardsQueue.activeCards.splice(idx, 1);
     }
-    
-    if(cardNotMatched(card)) {
+
+    if (cardNotMatched(card)) {
       card.classList.remove("flip");
     }
   }, flipSpeedMillis);
@@ -175,20 +171,17 @@ function playSound(audioId) {
   audio.play();
 }
 
-function getMatchedPair(card) {  
-  return cardsQueue.activeCards.filter(c => 
-    c !== card &&
-    c.getAttribute("name") === card.getAttribute("name")
-  );
+function getMatchedPair(card) {
+  return cardsQueue.activeCards.filter((c) => c !== card && c.getAttribute("name") === card.getAttribute("name"));
 }
 
-function matchCards(matchedCards) {  
+function matchCards(matchedCards) {
   matchedCards.forEach((c) => {
-      c.classList.add("matched");
+    c.classList.add("matched");
   });
 
   metaData.matchedPairs++;
-  
+
   if (areAllPairsMatched()) {
     playSound("completed");
     triggerConfetti();
@@ -209,7 +202,7 @@ function triggerConfetti() {
     spread: 360,
     origin: { y: 0.5 },
     ticks: 500,
-    gravity: 0.7
+    gravity: 0.7,
   });
 }
 
@@ -241,10 +234,7 @@ function shuffle(array) {
     let randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
 
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
   }
 
   return array;
