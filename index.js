@@ -15,9 +15,9 @@ const backfaceImageNames = [
 
 // Difficulty settings
 const difficultySettings = {
-  easy: { minCardSize: 100, gap: 10 },
-  medium: { minCardSize: 80, gap: 10 },
-  hard: { minCardSize: 60, gap: 10 },
+  easy: { minCardSize: 80, gap: 10 },
+  medium: { minCardSize: 60, gap: 10 },
+  hard: { minCardSize: 40, gap: 10 },
 };
 
 let currentDifficulty = "easy";
@@ -26,7 +26,7 @@ function calculateCardDimensions(difficulty) {
   const { minCardSize, gap } = difficultySettings[difficulty];
   const cardsContainer = document.querySelector(".cards");
   const viewportWidth = cardsContainer.clientWidth;
-  const viewportHeight = cardsContainer.clientHeight - 100;
+  const viewportHeight = cardsContainer.clientHeight;
 
   // Calculate the number of columns and rows
   let columns = Math.floor(viewportWidth / (minCardSize + gap));
