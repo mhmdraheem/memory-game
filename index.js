@@ -26,7 +26,7 @@ function calculateCardDimensions(difficulty) {
   const { minCardSize, gap } = difficultySettings[difficulty];
   const cardsContainer = document.querySelector(".cards");
   const viewportWidth = cardsContainer.clientWidth;
-  const viewportHeight = cardsContainer.clientHeight;
+  const viewportHeight = window.innerHeight - 150;
 
   // Calculate the number of columns and rows
   let columns = Math.floor(viewportWidth / (minCardSize + gap));
