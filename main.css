@@ -18,7 +18,6 @@ body {
   max-height: 1000px;
   margin: 0 auto;
   display: flex;
-  gap: 20px;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
@@ -53,6 +52,7 @@ option {
   display: flex;
   align-items: stretch;
   gap: 30px;
+  margin-bottom: 20px;
 }
 
 .restart {
