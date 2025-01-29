@@ -1,7 +1,0 @@
-Reset button
-congrats text
-congrats cermonye
-save user's last time
-configurable size
-save game on close
-adjust z-index
