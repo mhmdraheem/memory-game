@@ -103,6 +103,7 @@ const restartButton = document.querySelector(".restart");
 restartButton.addEventListener("click", (event) => {
   reset();
   adjustGridLayout(currentDifficulty);
+  audio.play();
 });
 
 // Set default difficulty on page load
