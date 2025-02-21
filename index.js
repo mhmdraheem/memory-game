@@ -103,6 +103,8 @@ const restartButton = document.querySelector(".restart");
 restartButton.addEventListener("click", (event) => {
   reset();
   adjustGridLayout(currentDifficulty);
+
+  audio.currentTime = 0;
   audio.play();
 });
 
