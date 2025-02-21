@@ -183,6 +183,7 @@ function matchCards(matchedCards) {
   metaData.matchedPairs++;
 
   if (areAllPairsMatched()) {
+    audio.pause();
     playSound("completed");
     triggerConfetti();
     reset();
@@ -213,7 +214,7 @@ function areAllPairsMatched() {
 
 function createFrontFace(frontFaceImage) {
   let face = document.createElement("div");
-  face.classList = "card-face front";
+  face.classList = "card-face front rotating-border";
   return face;
 }
 
@@ -239,3 +240,22 @@ function shuffle(array) {
 
   return array;
 }
+
+const audio = document.getElementById("bgAudio");
+audio.play();
+
+document.addEventListener(
+  "click",
+  () => {
+    const audio = document.getElementById("bgAudio");
+    if (audio.paused) {
+      audio.play();
+    }
+  },
+  { once: true }
+);
+
+audio.addEventListener("ended", () => {
+  audio.currentTime = 0;
+  audio.play();
+});
