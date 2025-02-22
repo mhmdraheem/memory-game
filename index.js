@@ -1,3 +1,4 @@
+const gameState = "running";
 const flipSpeedMillis = 1500;
 const frontfaceImage = "question.png";
 const backfaceImageNames = [
@@ -103,9 +104,9 @@ const restartButton = document.querySelector(".restart");
 restartButton.addEventListener("click", (event) => {
   reset();
   adjustGridLayout(currentDifficulty);
-
   mainAudio.currentTime = 0;
   mainAudio.play();
+  gameState = "running";
 });
 
 // Set default difficulty on page load
@@ -190,6 +191,7 @@ function matchCards(matchedCards) {
     playSound("completed");
     triggerConfetti();
     reset();
+    gameState = "stopped";
   } else {
     playSound("matched");
   }
@@ -250,9 +252,8 @@ mainAudio.play();
 document.addEventListener(
   "click",
   () => {
-    const audio = document.getElementById("bgAudio");
-    if (audio.paused) {
-      audio.play();
+    if (audio.paused && gameState === "running") {
+      mainAudio.play();
     }
   },
   { once: true }
@@ -267,6 +268,6 @@ document.addEventListener("visibilitychange", function () {
   if (document.hidden) {
     mainAudio.pause();
   } else {
-    mainAudio.play();
+    if (gameState === "running") mainAudio.play();
   }
 });
