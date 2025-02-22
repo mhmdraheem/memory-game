@@ -1,4 +1,4 @@
-const gameState = "running";
+let gameState = "running";
 const flipSpeedMillis = 1500;
 const frontfaceImage = "question.png";
 const backfaceImageNames = [
