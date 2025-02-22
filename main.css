@@ -9,9 +9,9 @@ body {
   background-color: #f0f0f0;
   color: #fff;
   height: 100vh;
-  overflow: hidden; /* Prevent scrolling */
+  overflow: hidden;
   background-image: url(img/galaxy.jpg);
-  background-position: left;
+  background-position: right;
   background-size: cover;
 }
 
@@ -88,6 +88,7 @@ option {
 }
 
 .flippig-card {
+  /* aspect-ratio: 1 / 1.5; */
   position: relative;
   width: 100%;
   height: 100%;
@@ -110,9 +111,9 @@ option {
 }
 
 .front {
-  border: 2px solid;
   border-radius: 5px;
-  border-image: linear-gradient(45deg, red, yellow, magenta) 1;
+  border: 1.5px solid #fff;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .back {
@@ -132,4 +133,18 @@ option {
 
 .matched {
   pointer-events: none;
+}
+
+.bg-attr {
+  color: #fff;
+  font-size: 0.7rem;
+  margin-left: auto;
+  font-style: italic;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+
+  a {
+    color: #fff;
+  }
 }

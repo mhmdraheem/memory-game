@@ -16,22 +16,22 @@ const backfaceImageNames = [
 
 // Difficulty settings
 const difficultySettings = {
-  easy: { minCardSize: 80, gap: 10 },
-  medium: { minCardSize: 60, gap: 10 },
-  hard: { minCardSize: 40, gap: 10 },
+  easy: { minCardWidth: 100, minCardHeight: 120, gap: 10 },
+  medium: { minCardWidth: 90, minCardHeight: 110, gap: 10 },
+  hard: { minCardWidth: 60, minCardHeight: 70, gap: 10 },
 };
 
 let currentDifficulty = "easy";
 
 function calculateCardDimensions(difficulty) {
-  const { minCardSize, gap } = difficultySettings[difficulty];
+  const { minCardWidth, minCardHeight, gap } = difficultySettings[difficulty];
   const cardsContainer = document.querySelector(".cards");
   const viewportWidth = cardsContainer.clientWidth;
   const viewportHeight = window.innerHeight - 150;
 
   // Calculate the number of columns and rows
-  let columns = Math.floor(viewportWidth / (minCardSize + gap));
-  let rows = Math.floor(viewportHeight / (minCardSize + gap));
+  let columns = Math.floor(viewportWidth / (minCardWidth + gap));
+  let rows = Math.floor(viewportHeight / (minCardHeight + gap));
 
   // Ensure the total number of cards is even
   let evenTotalCards = columns * rows;
@@ -247,22 +247,22 @@ function shuffle(array) {
 }
 
 const mainAudio = document.getElementById("bgAudio");
+mainAudio.addEventListener("ended", () => {
+  mainAudio.currentTime = 0;
+  mainAudio.play();
+});
 mainAudio.play();
+mainAudio.volume = 0.5;
 
 document.addEventListener(
   "click",
   () => {
-    if (audio.paused && gameState === "running") {
+    if (mainAudio.paused && gameState === "running") {
       mainAudio.play();
     }
   },
   { once: true }
 );
-
-mainAudio.addEventListener("ended", () => {
-  mainAudio.currentTime = 0;
-  mainAudio.play();
-});
 
 document.addEventListener("visibilitychange", function () {
   if (document.hidden) {
