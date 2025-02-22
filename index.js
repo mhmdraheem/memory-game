@@ -104,8 +104,8 @@ restartButton.addEventListener("click", (event) => {
   reset();
   adjustGridLayout(currentDifficulty);
 
-  audio.currentTime = 0;
-  audio.play();
+  mainAudio.currentTime = 0;
+  mainAudio.play();
 });
 
 // Set default difficulty on page load
@@ -186,7 +186,7 @@ function matchCards(matchedCards) {
   metaData.matchedPairs++;
 
   if (areAllPairsMatched()) {
-    audio.pause();
+    mainAudio.pause();
     playSound("completed");
     triggerConfetti();
     reset();
@@ -244,8 +244,8 @@ function shuffle(array) {
   return array;
 }
 
-const audio = document.getElementById("bgAudio");
-audio.play();
+const mainAudio = document.getElementById("bgAudio");
+mainAudio.play();
 
 document.addEventListener(
   "click",
@@ -258,13 +258,15 @@ document.addEventListener(
   { once: true }
 );
 
-audio.addEventListener("ended", () => {
-  audio.currentTime = 0;
-  audio.play();
+mainAudio.addEventListener("ended", () => {
+  mainAudio.currentTime = 0;
+  mainAudio.play();
 });
 
 document.addEventListener("visibilitychange", function () {
   if (document.hidden) {
-    document.querySelectorAll("audio").forEach((audio) => audio.pause());
+    mainAudio.pause();
+  } else {
+    mainAudio.play();
   }
 });
