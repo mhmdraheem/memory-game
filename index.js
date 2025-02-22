@@ -262,3 +262,9 @@ audio.addEventListener("ended", () => {
   audio.currentTime = 0;
   audio.play();
 });
+
+document.addEventListener("visibilitychange", function () {
+  if (document.hidden) {
+    document.querySelectorAll("audio").forEach((audio) => audio.pause());
+  }
+});
