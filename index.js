@@ -98,6 +98,7 @@ const difficultyDropdown = document.getElementById("difficulty");
 difficultyDropdown.addEventListener("change", (event) => {
   currentDifficulty = event.target.value;
   adjustGridLayout(currentDifficulty);
+  mainAudio.play();
 });
 
 const restartButton = document.querySelector(".restart");
