@@ -45,28 +45,26 @@ const backfaceImageNames = [
 
 // Difficulty settings
 const difficultySettings = {
-  easy: { minCardWidth: 110 },
+  easy: { minCardWidth: 100 },
   medium: { minCardWidth: 110 },
   hard: { minCardWidth: 90 },
 };
 
 let currentDifficulty = "easy";
 
-function calculateCardDimensions(difficulty) {
-  const gap = 10;
+function calculateCardDimensions(difficulty, gapX, gapY) {
   const { minCardWidth } = difficultySettings[difficulty];
   const cardsContainer = document.querySelector(".cards");
   const viewportWidth = cardsContainer.clientWidth;
   const viewportHeight = cardsContainer.clientHeight;
 
-  // Calculate the number of columns and rows
-  let columns = Math.floor(viewportWidth / (minCardWidth + gap));
-  let rows = Math.floor(viewportHeight / (minCardWidth * 1 + gap));
+  // Estimate columns based on minimum width and gap
+  let columns = Math.floor((viewportWidth + gapX) / (minCardWidth + gapX));
+  let rows = Math.floor((viewportHeight + gapY) / (minCardWidth + gapY));
 
-  // Ensure the total number of cards is even
+  // Make sure we have an even number of cards
   let evenTotalCards = columns * rows;
   if (evenTotalCards % 2 !== 0) {
-    // If the total number of cards is odd, reduce the number of columns or rows to make it even
     if (columns > rows) {
       columns--;
     } else {
@@ -75,35 +73,38 @@ function calculateCardDimensions(difficulty) {
     evenTotalCards = columns * rows;
   }
 
-  // Calculate the card size to fill the container exactly
-  const cardWidth = (viewportWidth - (columns - 1) * gap) / columns;
-  const cardHeight = (viewportHeight - (rows - 1) * gap) / rows;
-  return { columns, rows, cardWidth, cardHeight, evenTotalCards };
+  // Calculate exact size based on available space and gaps
+  const cardSize = Math.min(
+    (viewportWidth - (columns - 1) * gapX) / columns,
+    (viewportHeight - (rows - 1) * gapY) / rows
+  );
+
+  return { columns, rows, cardSize, evenTotalCards };
 }
 
+
 // Function to adjust the grid layout and card sizes
-function adjustGridLayout(difficulty) {
-  const { columns, rows, cardWidth, cardHeight, evenTotalCards } = calculateCardDimensions(difficulty);
+function adjustGridLayout(difficulty, gapX = 10, gapY = 10) {
+  const { columns, rows, cardSize, evenTotalCards } = calculateCardDimensions(difficulty, gapX, gapY);
   const cardsContainer = document.querySelector(".cards");
 
   // Clear existing cards
   cardsContainer.innerHTML = "";
 
-  // Set grid template columns and rows
-  cardsContainer.style.gridTemplateColumns = `repeat(${columns}, ${cardWidth}px)`;
-  cardsContainer.style.gridTemplateRows = `repeat(${rows}, ${cardHeight}px)`;
+  // Set grid styles
+  cardsContainer.style.display = "grid";
+  cardsContainer.style.gridTemplateColumns = `repeat(${columns}, ${cardSize}px)`;
+  cardsContainer.style.gridTemplateRows = `repeat(${rows}, ${cardSize}px)`;
+  cardsContainer.style.columnGap = `${gapX}px`;
+  cardsContainer.style.rowGap = `${gapY}px`;
 
-  // Create pairs of images
+  // Create card elements
   const imagePairs = createImagePairs(evenTotalCards / 2);
-
-  // Create cards to fill the grid
   for (let i = 0; i < evenTotalCards; i++) {
     const card = createCard(imagePairs[i]);
+    card.style.width = `${cardSize}px`;
+    card.style.height = `${cardSize}px`;
     cardsContainer.append(card);
-
-    // Adjust card size
-    card.style.width = `${cardWidth}px`;
-    card.style.height = `${cardHeight}px`;
   }
 }
 
