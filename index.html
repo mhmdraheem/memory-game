@@ -4,26 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://kit.fontawesome.com/9b220e24a6.js" crossorigin="anonymous"></script>
     <title>Memory Game</title>
     <link rel="stylesheet" href="./main.css" />
     <link rel="shortcut icon" href="#" />
   </head>
   <body>
     <div class="container">
-      <div class="top-header">
-        <div class="difficulty-menu">
-          <label for="difficulty">Difficulty</label>
-          <select id="difficulty">
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
-        </div>
-        <a href="#" class="restart">Restart</a>
-      </div>
+      <!-- <i class="sound fa-solid fa-volume-low"></i> -->
       <div class="cards"></div>
     </div>
-    <span class="bg-attr">background image from <a href="https://www.vecteezy.com">Vecteezy.com</a></span>
+    <!-- <span class="bg-attr">background image from <a href="https://www.vecteezy.com">Vecteezy.com</a></span> -->
     <audio id="bgAudio" src="audio/game-sound.mp3" type="audio/mp3"></audio>
     <audio id="fliped" src="audio/fliped.mp3" type="audio/mp3"></audio>
     <audio id="matched" src="audio/matched.mp3" type="audio/mp3"></audio>

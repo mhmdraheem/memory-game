@@ -1,4 +1,6 @@
 let gameState = "running";
+let muted = false;
+
 const flipSpeedMillis = 1500;
 const frontfaceImage = "question.png";
 const backfaceImageNames = [
@@ -14,24 +16,52 @@ const backfaceImageNames = [
   "react.png",
 ];
 
+// const backfaceImageNames = [
+//   "fa-regular fa-face-smile",
+//   "fa-regular fa-face-tired",
+//   "fa-regular fa-face-surprise",
+//   "fa-regular fa-face-smile-wink",
+//   "fa-regular fa-face-smile-beam",
+//   "fa-regular fa-face-sad-tear",
+//   "fa-regular fa-face-sad-cry",
+//   "fa-regular fa-face-rolling-eyes",
+//   "fa-regular fa-face-meh-blank",
+//   "fa-regular fa-face-meh",
+// ];
+
+// document.querySelector(".sound").addEventListener("click", () => {
+//   if (mainAudio.paused) {
+//     muted = false;
+//     startAudio();
+//     document.querySelector(".sound").classList.remove("fa-volume-xmark");
+//     document.querySelector(".sound").classList.add("fa-volume-low");
+//   } else {
+//     muted = true;
+//     mainAudio.pause();
+//     document.querySelector(".sound").classList.remove("fa-volume-low");
+//     document.querySelector(".sound").classList.add("fa-volume-xmark");
+//   }
+// });
+
 // Difficulty settings
 const difficultySettings = {
-  easy: { minCardWidth: 100, minCardHeight: 120, gap: 10 },
-  medium: { minCardWidth: 90, minCardHeight: 110, gap: 10 },
-  hard: { minCardWidth: 60, minCardHeight: 70, gap: 10 },
+  easy: { minCardWidth: 130 },
+  medium: { minCardWidth: 110 },
+  hard: { minCardWidth: 90 },
 };
 
 let currentDifficulty = "easy";
 
 function calculateCardDimensions(difficulty) {
-  const { minCardWidth, minCardHeight, gap } = difficultySettings[difficulty];
+  const gap = 60;
+  const { minCardWidth } = difficultySettings[difficulty];
   const cardsContainer = document.querySelector(".cards");
   const viewportWidth = cardsContainer.clientWidth;
-  const viewportHeight = window.innerHeight - 150;
+  const viewportHeight = cardsContainer.clientHeight;
 
   // Calculate the number of columns and rows
   let columns = Math.floor(viewportWidth / (minCardWidth + gap));
-  let rows = Math.floor(viewportHeight / (minCardHeight + gap));
+  let rows = Math.floor(viewportHeight / (minCardWidth * 1 + gap));
 
   // Ensure the total number of cards is even
   let evenTotalCards = columns * rows;
@@ -92,33 +122,13 @@ function createImagePairs(numPairs) {
 
 // Adjust grid layout on window resize
 window.addEventListener("resize", () => adjustGridLayout(currentDifficulty));
-
-// Handle difficulty change
-const difficultyDropdown = document.getElementById("difficulty");
-difficultyDropdown.addEventListener("change", (event) => {
-  currentDifficulty = event.target.value;
-  adjustGridLayout(currentDifficulty);
-  mainAudio.play();
-});
-
-const restartButton = document.querySelector(".restart");
-restartButton.addEventListener("click", (event) => {
-  reset();
-  adjustGridLayout(currentDifficulty);
-  mainAudio.currentTime = 0;
-  mainAudio.play();
-  gameState = "running";
-});
-
-// Set default difficulty on page load
-difficultyDropdown.value = currentDifficulty;
 adjustGridLayout(currentDifficulty);
 
 function createCard(imageName) {
   let card = document.createElement("div");
   card.classList.add("flippig-card");
   card.addEventListener("click", clickHandler);
-  card.setAttribute("name", imageName.split(".")[0]);
+  card.setAttribute("name", imageName);
   card.append(createFrontFace(frontfaceImage), createBackFace(imageName));
   return card;
 }
@@ -221,6 +231,10 @@ function areAllPairsMatched() {
 function createFrontFace(frontFaceImage) {
   let face = document.createElement("div");
   face.classList = "card-face front rotating-border";
+  let img = document.createElement("img");
+  img.src = "img/help_16799228.png";
+  img.classList.add("front-img");
+  face.append(img);
   return face;
 }
 
@@ -229,7 +243,7 @@ function createBackFace(backFaceImage) {
   face.classList = "card-face back";
   let img = document.createElement("img");
   img.src = "img/" + backFaceImage;
-  img.classList.add("photo");
+  img.getAttribute;
   face.append(img);
   return face;
 }
@@ -248,18 +262,21 @@ function shuffle(array) {
 }
 
 const mainAudio = document.getElementById("bgAudio");
-mainAudio.addEventListener("ended", () => {
-  mainAudio.currentTime = 0;
-  mainAudio.play();
-});
-mainAudio.play();
-mainAudio.volume = 0.5;
+// mainAudio.addEventListener("ended", () => {
+//   mainAudio.currentTime = 0;
+//   mainAudio.play();
+// });
+
+function startAudio() {
+  // mainAudio.play();
+  // mainAudio.volume = 0.1;
+}
 
 document.addEventListener(
   "click",
   () => {
     if (mainAudio.paused && gameState === "running") {
-      mainAudio.play();
+      startAudio();
     }
   },
   { once: true }
@@ -267,8 +284,8 @@ document.addEventListener(
 
 document.addEventListener("visibilitychange", function () {
   if (document.hidden) {
-    mainAudio.pause();
+    // mainAudio.pause();
   } else {
-    if (gameState === "running") mainAudio.play();
+    // if (gameState === "running" && !muted) startAudio();
   }
 });
