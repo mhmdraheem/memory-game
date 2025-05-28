@@ -45,7 +45,7 @@ const backfaceImageNames = [
 
 // Difficulty settings
 const difficultySettings = {
-  easy: { minCardWidth: 150 },
+  easy: { minCardWidth: 100 },
   medium: { minCardWidth: 110 },
   hard: { minCardWidth: 90 },
 };
