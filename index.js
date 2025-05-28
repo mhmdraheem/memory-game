@@ -51,7 +51,7 @@ const difficultySettings = {
 };
 
 let currentDifficulty = "easy";
-
+ 
 function calculateCardDimensions(difficulty, gapX, gapY) {
   const { minCardWidth } = difficultySettings[difficulty];
   const cardsContainer = document.querySelector(".cards");
