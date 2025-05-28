@@ -99,7 +99,7 @@ option {
 
 .cards {
   display: grid;
-  gap: 40px;
+  gap: 10px;
   justify-content: space-between;
   align-content: flex-start;
   width: 100%;
