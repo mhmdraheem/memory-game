@@ -45,7 +45,7 @@ const backfaceImageNames = [
 
 // Difficulty settings
 const difficultySettings = {
-  easy: { minCardWidth: 100 },
+  easy: { minCardWidth: 150 },
   medium: { minCardWidth: 110 },
   hard: { minCardWidth: 90 },
 };
@@ -244,7 +244,7 @@ function createBackFace(backFaceImage) {
   face.classList = "card-face back";
   let img = document.createElement("img");
   img.src = "img/" + backFaceImage;
-  img.getAttribute;
+  img.classList.add("photo")
   face.append(img);
   return face;
 }
