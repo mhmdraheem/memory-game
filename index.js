@@ -1,6 +1,6 @@
 let gameState = "running";
 let muted = false;
-
+let mainAudio = document.querySelector("#completed");
 const flipSpeedMillis = 1500;
 const frontfaceImage = "question.png";
 const backfaceImageNames = [
@@ -18,7 +18,7 @@ const backfaceImageNames = [
 
 // Difficulty settings
 const difficultySettings = {
-  easy: { minCardWidth: 150, minCardHeight: 200, gapX: 32, gapY: 32 },
+  easy: { minCardWidth: 100, minCardHeight: 130, gapX: 24, gapY: 24 },
   medium: { minCardWidth: 110, minCardHeight: 120, gapX: 20, gapY: 20 },
   hard: { minCardWidth: 90, minCardHeight: 100, gapX: 20, gapY: 20 },
 };

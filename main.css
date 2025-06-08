@@ -10,10 +10,8 @@
 
 h1 {
   font-family: "Henny Penny", system-ui;
-  font-size: clamp(40px, 6vw, 80px);
+  font-size: clamp(35px, 6vw, 80px);
   color: black;
-  margin-bottom: 20px;
-
   /* Define the linear gradient background */
   background-image: linear-gradient(to right, #4f46e5, #9333ea, #ec4899); /* Example: purple to pink */
   /* Clip the background to the text content */
@@ -22,6 +20,17 @@ h1 {
   /* Make the text color transparent so the background shows through */
   -webkit-text-fill-color: transparent; /* For WebKit browsers */
   color: transparent; /* Fallback for other browsers, though background-clip: text needs webkit prefix usually */
+  text-align: center;
+}
+
+.h1-container {
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1000px;
+  padding: 0 clamp(20px, 5vw, 60px);
+  margin-bottom: 20px;
 }
 
 body {
@@ -36,14 +45,6 @@ body {
   background-image: url(img/background.png);
   background-size: cover;
 }
-
-/* body::before {
-  content: "";
-  position: absolute;
-  background-image: url(img/question_5261193.png);
-  width: 150px;
-  height: 150px;
-} */
 
 .sound {
   font-size: 1.5rem;
@@ -182,7 +183,8 @@ option {
 }
 
 .front-img {
-  max-width: 60px;
+  width: 30%;
+  max-width: 40px;
   display: block;
 }
 
@@ -199,7 +201,7 @@ option {
 }
 
 .back {
-  background-color: #f6f6e7;
+  background-color: #808080;
   transform: rotateY(180deg);
 
   .emoji {
