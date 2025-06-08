@@ -166,7 +166,7 @@ option {
 .front::after {
   content: "";
   position: absolute;
-  background-image: url(img/Rectangle-small.png);
+  background-image: url(img/rectangle-small.png);
   background-size: cover;
   width: 12px;
   height: 16px;
