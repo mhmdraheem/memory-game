@@ -18,22 +18,24 @@ const backfaceImageNames = [
 
 // Difficulty settings
 const difficultySettings = {
-  easy: { minCardWidth: 100 },
-  medium: { minCardWidth: 110 },
-  hard: { minCardWidth: 90 },
+  easy: { minCardWidth: 150, minCardHeight: 200, gapX: 32, gapY: 32 },
+  medium: { minCardWidth: 110, minCardHeight: 120, gapX: 20, gapY: 20 },
+  hard: { minCardWidth: 90, minCardHeight: 100, gapX: 20, gapY: 20 },
 };
 
 let currentDifficulty = "easy";
- 
-function calculateCardDimensions(difficulty, gapX, gapY) {
-  const { minCardWidth } = difficultySettings[difficulty];
+
+function calculateCardDimensions(difficulty) {
+  const { minCardWidth, minCardHeight, gapX, gapY } = difficultySettings[difficulty];
   const cardsContainer = document.querySelector(".cards");
+  const h1Height = document.querySelector("h1").clientHeight;
+
   const viewportWidth = cardsContainer.clientWidth;
-  const viewportHeight = cardsContainer.clientHeight;
+  const viewportHeight = cardsContainer.clientHeight - h1Height;
 
   // Estimate columns based on minimum width and gap
   let columns = Math.floor((viewportWidth + gapX) / (minCardWidth + gapX));
-  let rows = Math.floor((viewportHeight + gapY) / (minCardWidth + gapY));
+  let rows = Math.floor((viewportHeight + gapY) / (minCardHeight + gapY));
 
   // Make sure we have an even number of cards
   let evenTotalCards = columns * rows;
@@ -47,18 +49,17 @@ function calculateCardDimensions(difficulty, gapX, gapY) {
   }
 
   // Calculate exact size based on available space and gaps
-  const cardSize = Math.min(
-    (viewportWidth - (columns - 1) * gapX) / columns,
-    (viewportHeight - (rows - 1) * gapY) / rows
-  );
+  const cardSize = {
+    width: (viewportWidth - (columns - 1) * gapX) / columns,
+    height: (viewportHeight - (rows - 1) * gapY) / rows,
+  };
 
   return { columns, rows, cardSize, evenTotalCards };
 }
 
-
 // Function to adjust the grid layout and card sizes
-function adjustGridLayout(difficulty, gapX = 10, gapY = 10) {
-  const { columns, rows, cardSize, evenTotalCards } = calculateCardDimensions(difficulty, gapX, gapY);
+function adjustGridLayout() {
+  const { columns, rows, cardSize, evenTotalCards } = calculateCardDimensions(currentDifficulty);
   const cardsContainer = document.querySelector(".cards");
 
   // Clear existing cards
@@ -66,17 +67,17 @@ function adjustGridLayout(difficulty, gapX = 10, gapY = 10) {
 
   // Set grid styles
   cardsContainer.style.display = "grid";
-  cardsContainer.style.gridTemplateColumns = `repeat(${columns}, ${cardSize}px)`;
-  cardsContainer.style.gridTemplateRows = `repeat(${rows}, ${cardSize}px)`;
-  cardsContainer.style.columnGap = `${gapX}px`;
-  cardsContainer.style.rowGap = `${gapY}px`;
+  cardsContainer.style.gridTemplateColumns = `repeat(${columns}, ${cardSize.width}px)`;
+  cardsContainer.style.gridTemplateRows = `repeat(${rows}, ${cardSize.height}px)`;
+  cardsContainer.style.columnGap = `${difficultySettings[currentDifficulty].gapX}px`;
+  cardsContainer.style.rowGap = `${difficultySettings[currentDifficulty].gapY}px`;
 
   // Create card elements
   const imagePairs = createImagePairs(evenTotalCards / 2);
   for (let i = 0; i < evenTotalCards; i++) {
     const card = createCard(imagePairs[i]);
-    card.style.width = `${cardSize}px`;
-    card.style.height = `${cardSize}px`;
+    card.style.width = `${cardSize.width}px`;
+    card.style.height = `${cardSize.height}px`;
     cardsContainer.append(card);
   }
 }
@@ -202,11 +203,11 @@ function areAllPairsMatched() {
   return metaData.matchedPairs === totalCards / 2;
 }
 
-function createFrontFace(frontFaceImage) {
+function createFrontFace() {
   let face = document.createElement("div");
   face.classList = "card-face front rotating-border";
   let img = document.createElement("img");
-  img.src = "img/help_16799228.png";
+  img.src = "img/rectangle-big.png";
   img.classList.add("front-img");
   face.append(img);
   return face;
@@ -217,7 +218,7 @@ function createBackFace(backFaceImage) {
   face.classList = "card-face back";
   let img = document.createElement("img");
   img.src = "img/" + backFaceImage;
-  img.classList.add("photo")
+  img.classList.add("photo");
   face.append(img);
   return face;
 }
