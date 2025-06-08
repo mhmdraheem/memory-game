@@ -16,33 +16,6 @@ const backfaceImageNames = [
   "react.png",
 ];
 
-// const backfaceImageNames = [
-//   "fa-regular fa-face-smile",
-//   "fa-regular fa-face-tired",
-//   "fa-regular fa-face-surprise",
-//   "fa-regular fa-face-smile-wink",
-//   "fa-regular fa-face-smile-beam",
-//   "fa-regular fa-face-sad-tear",
-//   "fa-regular fa-face-sad-cry",
-//   "fa-regular fa-face-rolling-eyes",
-//   "fa-regular fa-face-meh-blank",
-//   "fa-regular fa-face-meh",
-// ];
-
-// document.querySelector(".sound").addEventListener("click", () => {
-//   if (mainAudio.paused) {
-//     muted = false;
-//     startAudio();
-//     document.querySelector(".sound").classList.remove("fa-volume-xmark");
-//     document.querySelector(".sound").classList.add("fa-volume-low");
-//   } else {
-//     muted = true;
-//     mainAudio.pause();
-//     document.querySelector(".sound").classList.remove("fa-volume-low");
-//     document.querySelector(".sound").classList.add("fa-volume-xmark");
-//   }
-// });
-
 // Difficulty settings
 const difficultySettings = {
   easy: { minCardWidth: 100 },
@@ -261,32 +234,3 @@ function shuffle(array) {
 
   return array;
 }
-
-const mainAudio = document.getElementById("bgAudio");
-// mainAudio.addEventListener("ended", () => {
-//   mainAudio.currentTime = 0;
-//   mainAudio.play();
-// });
-
-function startAudio() {
-  // mainAudio.play();
-  // mainAudio.volume = 0.1;
-}
-
-document.addEventListener(
-  "click",
-  () => {
-    if (mainAudio.paused && gameState === "running") {
-      startAudio();
-    }
-  },
-  { once: true }
-);
-
-document.addEventListener("visibilitychange", function () {
-  if (document.hidden) {
-    // mainAudio.pause();
-  } else {
-    // if (gameState === "running" && !muted) startAudio();
-  }
-});

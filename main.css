@@ -8,6 +8,11 @@
   display: none;
 }
 
+h1 {
+  font-size: 80px;
+  color: black;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #ffffff;
@@ -34,19 +39,17 @@ body {
 }
 
 .container {
-  width: 95%;
+  width: 100%;
   max-width: 1200px;
-  height: calc(100vh - 100px);
+  height: 100vh;
   max-height: 1000px;
-  margin: 40px auto;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
 }
-
-/* select:invalid { color: gray; } */
 
 select:required:invalid {
   color: gray;
@@ -99,7 +102,6 @@ option {
 
 .cards {
   display: grid;
-  gap: 10px;
   justify-content: center;
   align-content: flex-start;
   width: 100%;
