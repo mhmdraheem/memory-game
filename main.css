@@ -164,7 +164,7 @@ option {
   align-items: center;
   backface-visibility: hidden;
   /* box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.1); */
-  border: 5px solid black;
+  border: 2px solid black;
   overflow: hidden;
 }
 
@@ -214,7 +214,7 @@ option {
 }
 
 .back {
-  background-color: #bebebe;
+  background-color: #fff;
   transform: rotateY(180deg);
 
   .emoji {
@@ -224,7 +224,8 @@ option {
 }
 
 .photo {
-  max-width: 60%;
+  max-width: 50%;
+  border-radius: 50%;
   /* max-height: 80%; */
   display: block;
 }
@@ -250,4 +251,9 @@ option {
   a {
     color: #fff;
   }
+}
+
+footer {
+  color: black;
+  padding: 10px;
 }
