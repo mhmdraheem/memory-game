@@ -4,21 +4,24 @@ let mainAudio = document.querySelector("#completed");
 const flipSpeedMillis = 1500;
 const frontfaceImage = "question.png";
 const backfaceImageNames = [
-  "angular.png",
-  "css3.png",
-  "github.png",
-  "gulbjs.png",
-  "html5.png",
-  "jestjs.png",
-  "js.png",
-  "mongodb.png",
-  "python.png",
-  "react.png",
+  "angry-face_10963456.png",
+  "blind_10963583.png",
+  "dead_10963598.png",
+  "dollar-eye_10963493.png",
+  "happy-face_10963590.png",
+  "happy-face_10963605.png",
+  "mask-face_10963577.png",
+  "no-mouth_10963502.png",
+  "sleeping_10963569.png",
+  "sleepy_10963562.png",
+  "surprised_10963547.png",
+  "zipped_10963505.png",
+  "cool-dude_10963425.png",
 ];
 
 // Difficulty settings
 const difficultySettings = {
-  easy: { minCardWidth: 90, minCardHeight: 100, gapX: 16, gapY: 16 },
+  easy: { minCardWidth: 100, minCardHeight: 130, gapX: 16, gapY: 16 },
   medium: { minCardWidth: 110, minCardHeight: 120, gapX: 20, gapY: 20 },
   hard: { minCardWidth: 90, minCardHeight: 100, gapX: 20, gapY: 20 },
 };
@@ -217,7 +220,7 @@ function createBackFace(backFaceImage) {
   let face = document.createElement("div");
   face.classList = "card-face back";
   let img = document.createElement("img");
-  img.src = "img/" + backFaceImage;
+  img.src = "img/emoji/" + backFaceImage;
   img.classList.add("photo");
   face.append(img);
   return face;

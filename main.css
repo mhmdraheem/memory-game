@@ -214,7 +214,7 @@ option {
 }
 
 .back {
-  background-color: #808080;
+  background-color: #bebebe;
   transform: rotateY(180deg);
 
   .emoji {
@@ -224,7 +224,7 @@ option {
 }
 
 .photo {
-  max-width: 50%;
+  max-width: 60%;
   /* max-height: 80%; */
   display: block;
 }
