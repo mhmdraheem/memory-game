@@ -1,27 +1,41 @@
 let gameState = "running";
 let muted = false;
 let mainAudio = document.querySelector("#completed");
-const flipSpeedMillis = 150000;
+const flipSpeedMillis = 1500;
 const frontfaceImage = "question.png";
 const backfaceImageNames = [
+  "angel_10963317.png",
+  "angry-face_10963400.png",
+  "angry-face_10963446.png",
   "angry-face_10963456.png",
   "blind_10963583.png",
+  "cool-dude_10963425.png",
+  "crying_10963412.png",
   "dead_10963598.png",
   "dollar-eye_10963493.png",
   "happy-face_10963590.png",
   "happy-face_10963605.png",
+  "heart-eyes_10963327.png",
+  "hearts_10963331.png",
+  "kiss_10963357.png",
   "mask-face_10963577.png",
+  "melting_10963322.png",
+  "nerd-glasses_10963521.png",
   "no-mouth_10963502.png",
+  "sad-face_10963478.png",
   "sleeping_10963569.png",
   "sleepy_10963562.png",
+  "smiling-face_10963291.png",
+  "smiling-face_10963367.png",
+  "surprised_10963396.png",
   "surprised_10963547.png",
+  "vomiting_10963464.png",
   "zipped_10963505.png",
-  "cool-dude_10963425.png",
 ];
 
 // Difficulty settings
 const difficultySettings = {
-  easy: { minCardWidth: 120, minCardHeight: 150, gapX: 16, gapY: 16 },
+  easy: { minCardWidth: 90, minCardHeight: 90, gapX: 16, gapY: 16 },
   medium: { minCardWidth: 110, minCardHeight: 120, gapX: 20, gapY: 20 },
   hard: { minCardWidth: 90, minCardHeight: 100, gapX: 20, gapY: 20 },
 };
@@ -91,7 +105,7 @@ function createImagePairs(numPairs) {
   const pairs = [];
 
   for (let i = 0; i < numPairs; i++) {
-    const image = shuffledImages[i % shuffledImages.length];
+    const image = backfaceImageNames[i % backfaceImageNames.length];
     pairs.push(image, image); // Add two copies of the same image
   }
 
@@ -210,7 +224,7 @@ function createFrontFace() {
   let face = document.createElement("div");
   face.classList = "card-face front rotating-border";
   let img = document.createElement("img");
-  img.src = "img/rectangle-big.png";
+  img.src = "img/question-mark_10264101.png";
   img.classList.add("front-img");
   face.append(img);
   return face;
@@ -227,14 +241,10 @@ function createBackFace(backFaceImage) {
 }
 
 function shuffle(array) {
-  let currentIndex = array.length;
-
-  while (currentIndex != 0) {
-    let randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  const arr = array.slice(); // Make a shallow copy to avoid modifying original
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1)); // Random index from 0 to i
+    [arr[i], arr[j]] = [arr[j], arr[i]]; // Swap elements
   }
-
-  return array;
+  return arr;
 }

@@ -9,8 +9,8 @@
 }
 
 h1 {
-  font-family: "Henny Penny", system-ui;
-  font-size: clamp(35px, 6vw, 80px);
+  font-family: "Kirang Haerang", system-ui;
+  font-size: clamp(44px, 6vw, 80px);
   color: black;
   /* Define the linear gradient background */
   background-image: linear-gradient(to right, #4f46e5, #9333ea, #ec4899); /* Example: purple to pink */
@@ -20,22 +20,24 @@ h1 {
   /* Make the text color transparent so the background shows through */
   -webkit-text-fill-color: transparent; /* For WebKit browsers */
   color: transparent; /* Fallback for other browsers, though background-clip: text needs webkit prefix usually */
-  text-align: center;
+  text-align: left;
 }
 
 .h1-container {
-  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 1000px;
-  padding: 0 clamp(20px, 5vw, 60px);
   margin-bottom: 20px;
+  gap: 1rem;
+}
+
+.brain-img {
+  max-width: 60px;
 }
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #bdeef9;
+  background-color: #bdd3f9;
   /* background-image: url(img/rainbow.jpg); */
   color: #fff;
   height: 100vh;
@@ -60,7 +62,7 @@ body {
 }
 
 .container {
-  width: 100%;
+  width: 80%;
   max-width: 1200px;
   height: 100vh;
   padding: 20px 20px;
@@ -69,6 +71,12 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+}
+
+@media (max-width: 767px) {
+  .container {
+    width: 100%;
+  }
 }
 
 select:required:invalid {
@@ -164,7 +172,7 @@ option {
   align-items: center;
   backface-visibility: hidden;
   /* box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.1); */
-  border: 2px solid black;
+  /* border: 2px solid black; */
   overflow: hidden;
 }
 
@@ -177,7 +185,7 @@ option {
 
 .front::before,
 .front::after {
-  content: "";
+  /* content: ""; */
   position: absolute;
   background-image: url(img/rectangle-small.png);
   background-size: cover;
@@ -225,7 +233,7 @@ option {
 
 .photo {
   max-width: 50%;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   /* max-height: 80%; */
   display: block;
 }
@@ -254,6 +262,8 @@ option {
 }
 
 footer {
-  color: black;
-  padding: 10px;
+  color: rgba(0, 0, 0, 0.5);
+  padding-bottom: 32px;
+  text-align: center;
+  font-size: 14px;
 }
