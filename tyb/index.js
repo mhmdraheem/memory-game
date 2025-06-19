@@ -101,7 +101,6 @@ function adjustGridLayout() {
 
 // Function to create pairs of images
 function createImagePairs(numPairs) {
-  const shuffledImages = shuffle([...backfaceImageNames]);
   const pairs = [];
 
   for (let i = 0; i < numPairs; i++) {
@@ -224,7 +223,7 @@ function createFrontFace() {
   let face = document.createElement("div");
   face.classList = "card-face front rotating-border";
   let img = document.createElement("img");
-  img.src = "img/question-mark_10264101.png";
+  img.src = "tyb/img/question-mark_10264101.png";
   img.classList.add("front-img");
   face.append(img);
   return face;
@@ -234,7 +233,7 @@ function createBackFace(backFaceImage) {
   let face = document.createElement("div");
   face.classList = "card-face back";
   let img = document.createElement("img");
-  img.src = "img/emoji/" + backFaceImage;
+  img.src = "tyb/img/emoji/" + backFaceImage;
   img.classList.add("photo");
   face.append(img);
   return face;
